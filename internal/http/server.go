@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"strings"
 	"time"
 
 	"trustpin/internal/audit"
@@ -33,6 +34,15 @@ func (s *Server) Router() http.Handler {
 	r := chi.NewRouter()
 	r.Use(jsonOnly)
 	r.Use(s.rateLimit)
+
+	r.Get("/swagger", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/swagger/", http.StatusMovedPermanently)
+	})
+	r.Get("/swagger/openapi.yaml", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/yaml")
+		http.ServeFile(w, r, "docs/openapi.yaml")
+	})
+	r.Handle("/swagger/*", http.StripPrefix("/swagger/", http.FileServer(http.Dir("docs/swagger"))))
 
 	r.Route("/v1", func(r chi.Router) {
 		r.Post("/enrollments/init", s.handleEnrollmentInit)
@@ -70,6 +80,10 @@ func (s *Server) Serve(ctx context.Context) error {
 
 func jsonOnly(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasPrefix(r.URL.Path, "/swagger") {
+			next.ServeHTTP(w, r)
+			return
+		}
 		w.Header().Set("Content-Type", "application/json")
 		next.ServeHTTP(w, r)
 	})

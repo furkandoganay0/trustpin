@@ -57,6 +57,7 @@ docker compose up --build
 ```
 
 API listens on `http://localhost:8080`.
+Swagger UI is available at `http://localhost:8080/swagger/`.
 
 ## Example Approval Flow (cURL)
 
