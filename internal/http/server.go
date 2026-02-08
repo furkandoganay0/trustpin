@@ -39,6 +39,10 @@ func (s *Server) Router() http.Handler {
 		http.ServeFile(w, r, "web/landing/index.html")
 	})
 	r.Handle("/assets/*", http.StripPrefix("/assets/", http.FileServer(http.Dir("web/landing/assets"))))
+	r.Get("/docs", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/docs/", http.StatusMovedPermanently)
+	})
+	r.Handle("/docs/*", http.StripPrefix("/docs/", http.FileServer(http.Dir("web/docs"))))
 
 	r.Get("/swagger", func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/swagger/", http.StatusMovedPermanently)
@@ -85,7 +89,7 @@ func (s *Server) Serve(ctx context.Context) error {
 
 func jsonOnly(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/" || strings.HasPrefix(r.URL.Path, "/assets/") || strings.HasPrefix(r.URL.Path, "/swagger") {
+		if r.URL.Path == "/" || strings.HasPrefix(r.URL.Path, "/assets/") || strings.HasPrefix(r.URL.Path, "/docs") || strings.HasPrefix(r.URL.Path, "/swagger") {
 			next.ServeHTTP(w, r)
 			return
 		}

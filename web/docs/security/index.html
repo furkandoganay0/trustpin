@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustPin Docs • Security Model</title>
+    <meta name="description" content="TrustPin security model and cryptographic guarantees." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TrustPin Docs
+        </div>
+        <div class="search">
+          <span>🔍</span>
+          <input id="doc-search" type="search" placeholder="Dokümanlarda ara" aria-label="Search docs" />
+        </div>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        <a class="badge" href="/" data-i18n="ui.back">Back to TrustPin</a>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h4 data-i18n="sidebar.gettingStarted">Getting Started</h4>
+        <a href="/docs/introduction/" data-i18n="sidebar.intro">Introduction</a>
+        <a href="/docs/quickstart/" data-i18n="sidebar.quickstart">Quickstart</a>
+        <h4 data-i18n="sidebar.api">API</h4>
+        <a href="/docs/api/" data-i18n="sidebar.apiOverview">API Overview</a>
+        <a href="/swagger/" data-i18n="sidebar.openapi">OpenAPI Reference</a>
+        <h4 data-i18n="sidebar.security">Security</h4>
+        <a href="/docs/security/" data-i18n="sidebar.securityModel">Security Model</a>
+        <a href="/docs/deploy/" data-i18n="sidebar.deploy">Deployment</a>
+        <h4 data-i18n="sidebar.support">Support</h4>
+        <a href="/docs/faq/" data-i18n="sidebar.faq">FAQ</a>
+      </aside>
+
+      <main class="content">
+        <span class="badge" data-i18n="sec.badge">Security</span>
+        <h1 data-i18n="sec.title">Security model</h1>
+        <p data-i18n="sec.p1">TrustPin is designed for zero‑trust environments. Every approval must be cryptographically verifiable.</p>
+
+        <h2 data-i18n="sec.pkTitle">Public‑key only storage</h2>
+        <p data-i18n="sec.pkBody">Devices generate Ed25519 keypairs locally. The server stores only public keys, limiting the impact of a server compromise.</p>
+
+        <h2 data-i18n="sec.canonTitle">Canonical payloads</h2>
+        <p data-i18n="sec.canonBody">Approvals use deterministic payload ordering to prevent signature confusion and replay attacks.</p>
+
+        <h2 data-i18n="sec.nonceTitle">Nonce uniqueness + TTLs</h2>
+        <p data-i18n="sec.nonceBody">Each challenge includes a unique nonce. Redis enforces uniqueness until expiration.</p>
+
+        <div class="callout">
+          <strong data-i18n="sec.calloutTitle">Guarantee</strong>
+          <p data-i18n="sec.calloutBody">Even with database access, an attacker cannot approve without the device signature.</p>
+        </div>
+
+        <h2 data-i18n="sec.auditTitle">Audit log</h2>
+        <p data-i18n="sec.auditBody">All state transitions produce append‑only audit events, enabling forensic timelines and compliance review.</p>
+      </main>
+
+      <aside class="toc">
+        <h4 data-i18n="toc.title">On this page</h4>
+      </aside>
+    </div>
+
+    <div class="footer">© 2026 TrustPin. Designed for security teams.</div>
+    <script src="/docs/assets/docs.js"></script>
+  </body>
+</html>

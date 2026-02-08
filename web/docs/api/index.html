@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustPin Docs • API Overview</title>
+    <meta name="description" content="TrustPin API overview and endpoints." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TrustPin Docs
+        </div>
+        <div class="search">
+          <span>🔍</span>
+          <input id="doc-search" type="search" placeholder="Dokümanlarda ara" aria-label="Search docs" />
+        </div>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        <a class="badge" href="/" data-i18n="ui.back">Back to TrustPin</a>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h4 data-i18n="sidebar.gettingStarted">Getting Started</h4>
+        <a href="/docs/introduction/" data-i18n="sidebar.intro">Introduction</a>
+        <a href="/docs/quickstart/" data-i18n="sidebar.quickstart">Quickstart</a>
+        <h4 data-i18n="sidebar.api">API</h4>
+        <a href="/docs/api/" data-i18n="sidebar.apiOverview">API Overview</a>
+        <a href="/swagger/" data-i18n="sidebar.openapi">OpenAPI Reference</a>
+        <h4 data-i18n="sidebar.security">Security</h4>
+        <a href="/docs/security/" data-i18n="sidebar.securityModel">Security Model</a>
+        <a href="/docs/deploy/" data-i18n="sidebar.deploy">Deployment</a>
+        <h4 data-i18n="sidebar.support">Support</h4>
+        <a href="/docs/faq/" data-i18n="sidebar.faq">FAQ</a>
+      </aside>
+
+      <main class="content">
+        <span class="badge" data-i18n="api.badge">API Overview</span>
+        <h1 data-i18n="api.title">TrustPin API</h1>
+        <p data-i18n="api.p1">TrustPin exposes a minimal set of endpoints for enrollment, device management, challenge lifecycle, and audit access. Responses are JSON only.</p>
+
+        <h2 data-i18n="api.baseTitle">Base URL</h2>
+        <div class="code">http://localhost:8081</div>
+
+        <h2 data-i18n="api.coreTitle">Core endpoints</h2>
+        <ul>
+          <li><strong>POST</strong> <span data-i18n="api.e1">/v1/enrollments/init — create enrollment and pairing code</span></li>
+          <li><strong>POST</strong> <span data-i18n="api.e2">/v1/devices/activate — activate device with public key</span></li>
+          <li><strong>POST</strong> <span data-i18n="api.e3">/v1/auth/challenges/init — issue challenge</span></li>
+          <li><strong>GET</strong> <span data-i18n="api.e4">/v1/auth/challenges/{id} — fetch canonical payload</span></li>
+          <li><strong>POST</strong> <span data-i18n="api.e5">/v1/auth/challenges/{id}/approve — approve with signature</span></li>
+          <li><strong>POST</strong> <span data-i18n="api.e6">/v1/auth/challenges/{id}/reject — reject with signature</span></li>
+          <li><strong>GET</strong> <span data-i18n="api.e7">/v1/auth/challenges/{id}/status — query state</span></li>
+          <li><strong>GET</strong> <span data-i18n="api.e8">/v1/audit/events — list audit events</span></li>
+        </ul>
+
+        <h2 data-i18n="api.ex1">Example: initiate enrollment</h2>
+        <div class="code">curl -X POST http://localhost:8081/v1/enrollments/init \
+  -H "Content-Type: application/json" \
+  -d '{"tenant_id":"t1","user_id":"u1"}'</div>
+
+        <h2 data-i18n="api.ex2">Example: approve challenge</h2>
+        <p data-i18n="api.ex2Body">Approval requires the device signature and canonical payload.</p>
+        <div class="code">curl -X POST http://localhost:8081/v1/auth/challenges/{id}/approve \
+  -H "Content-Type: application/json" \
+  -d '{"device_id":"dev_123","signature":"...","payload":{...}}'</div>
+
+        <h2 data-i18n="api.openapiTitle">OpenAPI reference</h2>
+        <p data-i18n="api.openapiBody">Use the interactive Swagger UI for request/response schemas.</p>
+        <a class="badge" href="/swagger/" data-i18n="api.openapiCta">OpenAPI Docs</a>
+      </main>
+
+      <aside class="toc">
+        <h4 data-i18n="toc.title">On this page</h4>
+      </aside>
+    </div>
+
+    <div class="footer">© 2026 TrustPin. Minimal surface area, maximum assurance.</div>
+    <script src="/docs/assets/docs.js"></script>
+  </body>
+</html>

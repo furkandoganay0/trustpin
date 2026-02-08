@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustPin Docs • Introduction</title>
+    <meta name="description" content="TrustPin documentation: overview, architecture, and key concepts." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TrustPin Docs
+        </div>
+        <div class="search">
+          <span>🔍</span>
+          <input id="doc-search" type="search" placeholder="Dokümanlarda ara" aria-label="Search docs" />
+        </div>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        <a class="badge" href="/" data-i18n="ui.back">Back to TrustPin</a>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h4 data-i18n="sidebar.gettingStarted">Getting Started</h4>
+        <a href="/docs/introduction/" data-i18n="sidebar.intro">Introduction</a>
+        <a href="/docs/quickstart/" data-i18n="sidebar.quickstart">Quickstart</a>
+        <h4 data-i18n="sidebar.api">API</h4>
+        <a href="/docs/api/" data-i18n="sidebar.apiOverview">API Overview</a>
+        <a href="/swagger/" data-i18n="sidebar.openapi">OpenAPI Reference</a>
+        <h4 data-i18n="sidebar.security">Security</h4>
+        <a href="/docs/security/" data-i18n="sidebar.securityModel">Security Model</a>
+        <a href="/docs/deploy/" data-i18n="sidebar.deploy">Deployment</a>
+        <h4 data-i18n="sidebar.support">Support</h4>
+        <a href="/docs/faq/" data-i18n="sidebar.faq">FAQ</a>
+      </aside>
+
+      <main class="content">
+        <span class="badge" data-i18n="intro.badge">Introduction</span>
+        <h1 data-i18n="intro.title">TrustPin – Bank‑grade mobile approval & MFA backend</h1>
+        <p data-i18n="intro.p1">TrustPin is a security‑first, on‑prem deployable approval system. It does <strong>not</strong> authenticate users; it only verifies cryptographic approval for sensitive actions. Built for banks, fintechs, and enterprises, TrustPin is open‑source and self‑hostable.</p>
+
+        <div class="callout">
+          <strong data-i18n="intro.calloutTitle">What TrustPin is</strong>
+          <p data-i18n="intro.calloutBody">A cryptographic approval backend with strict state machines, append‑only audit trails, and device‑signed challenges.</p>
+        </div>
+
+        <h2 data-i18n="intro.notTitle">What TrustPin is not</h2>
+        <p data-i18n="intro.notBody">TrustPin does not replace your identity provider or authentication stack. It assumes identity is handled elsewhere and focuses solely on secure approvals.</p>
+
+        <h2 data-i18n="intro.conceptsTitle">Key concepts</h2>
+        <p data-i18n="intro.conceptsBody">TrustPin relies on deterministic payloads and signed challenges to guarantee verifiable approvals. The server stores only public keys, and every approval is validated against a canonical JSON payload.</p>
+
+        <div class="code">
+          // Canonical payload fields (ordered)
+          {
+            tenant_id,
+            user_id,
+            device_id,
+            challenge_id,
+            nonce,
+            action,
+            issued_at,
+            expires_at,
+            context_hash
+          }
+        </div>
+
+        <h2 data-i18n="intro.archTitle">High‑level architecture</h2>
+        <p data-i18n="intro.archBody">The API service runs statelessly and relies on PostgreSQL for source‑of‑truth state, Redis for TTL caches and nonce uniqueness, and a push provider for notifying devices.</p>
+
+        <ul>
+          <li data-i18n="intro.list1">API service (Go) with strict HTTP handlers</li>
+          <li data-i18n="intro.list2">PostgreSQL for state machines and audit log</li>
+          <li data-i18n="intro.list3">Redis for TTL caches, rate limits, and nonce uniqueness</li>
+          <li data-i18n="intro.list4">Push provider abstraction (mockable)</li>
+        </ul>
+
+        <h2 data-i18n="intro.flowTitle">Typical flow</h2>
+        <p data-i18n="intro.flowBody">Enrollment → Device activation → Challenge initiation → Approve/Reject → Audit event. Each transition is validated and recorded.</p>
+      </main>
+
+      <aside class="toc">
+        <h4 data-i18n="toc.title">On this page</h4>
+      </aside>
+    </div>
+
+    <div class="footer">© 2026 TrustPin. Self‑hosted security, designed for auditability.</div>
+    <script src="/docs/assets/docs.js"></script>
+  </body>
+</html>

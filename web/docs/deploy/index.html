@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustPin Docs • Deployment</title>
+    <meta name="description" content="Deployment guidance for TrustPin." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TrustPin Docs
+        </div>
+        <div class="search">
+          <span>🔍</span>
+          <input id="doc-search" type="search" placeholder="Dokümanlarda ara" aria-label="Search docs" />
+        </div>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        <a class="badge" href="/" data-i18n="ui.back">Back to TrustPin</a>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h4 data-i18n="sidebar.gettingStarted">Getting Started</h4>
+        <a href="/docs/introduction/" data-i18n="sidebar.intro">Introduction</a>
+        <a href="/docs/quickstart/" data-i18n="sidebar.quickstart">Quickstart</a>
+        <h4 data-i18n="sidebar.api">API</h4>
+        <a href="/docs/api/" data-i18n="sidebar.apiOverview">API Overview</a>
+        <a href="/swagger/" data-i18n="sidebar.openapi">OpenAPI Reference</a>
+        <h4 data-i18n="sidebar.security">Security</h4>
+        <a href="/docs/security/" data-i18n="sidebar.securityModel">Security Model</a>
+        <a href="/docs/deploy/" data-i18n="sidebar.deploy">Deployment</a>
+        <h4 data-i18n="sidebar.support">Support</h4>
+        <a href="/docs/faq/" data-i18n="sidebar.faq">FAQ</a>
+      </aside>
+
+      <main class="content">
+        <span class="badge" data-i18n="dep.badge">Deployment</span>
+        <h1 data-i18n="dep.title">Deploy TrustPin on‑prem</h1>
+        <p data-i18n="dep.p1">TrustPin is designed to run inside your own infrastructure. The default docker‑compose stack is a starting point for production hardening.</p>
+
+        <h2 data-i18n="dep.coreTitle">Core services</h2>
+        <ul>
+          <li data-i18n="dep.core1">API service (stateless)</li>
+          <li data-i18n="dep.core2">PostgreSQL (source of truth)</li>
+          <li data-i18n="dep.core3">Redis (TTL cache, nonce uniqueness)</li>
+        </ul>
+
+        <h2 data-i18n="dep.checkTitle">Production checklist</h2>
+        <ul>
+          <li data-i18n="dep.check1">Enable TLS termination (ingress or reverse proxy)</li>
+          <li data-i18n="dep.check2">Set strong database credentials and rotate secrets</li>
+          <li data-i18n="dep.check3">Back up PostgreSQL and audit data regularly</li>
+          <li data-i18n="dep.check4">Pin docker image tags</li>
+          <li data-i18n="dep.check5">Restrict network access to internal zones</li>
+        </ul>
+
+        <h2 data-i18n="dep.cfgTitle">Configuration</h2>
+        <p data-i18n="dep.cfgBody">TrustPin is configured through environment variables. Review the compose file to tune TTLs and rate limits.</p>
+      </main>
+
+      <aside class="toc">
+        <h4 data-i18n="toc.title">On this page</h4>
+      </aside>
+    </div>
+
+    <div class="footer">© 2026 TrustPin. Deploy with confidence.</div>
+    <script src="/docs/assets/docs.js"></script>
+  </body>
+</html>

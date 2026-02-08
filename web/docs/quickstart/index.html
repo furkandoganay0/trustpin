@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustPin Docs • Quickstart</title>
+    <meta name="description" content="Get TrustPin running locally in minutes." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/docs/assets/docs.css" />
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TrustPin Docs
+        </div>
+        <div class="search">
+          <span>🔍</span>
+          <input id="doc-search" type="search" placeholder="Dokümanlarda ara" aria-label="Search docs" />
+        </div>
+        <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        <a class="badge" href="/" data-i18n="ui.back">Back to TrustPin</a>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h4 data-i18n="sidebar.gettingStarted">Getting Started</h4>
+        <a href="/docs/introduction/" data-i18n="sidebar.intro">Introduction</a>
+        <a href="/docs/quickstart/" data-i18n="sidebar.quickstart">Quickstart</a>
+        <h4 data-i18n="sidebar.api">API</h4>
+        <a href="/docs/api/" data-i18n="sidebar.apiOverview">API Overview</a>
+        <a href="/swagger/" data-i18n="sidebar.openapi">OpenAPI Reference</a>
+        <h4 data-i18n="sidebar.security">Security</h4>
+        <a href="/docs/security/" data-i18n="sidebar.securityModel">Security Model</a>
+        <a href="/docs/deploy/" data-i18n="sidebar.deploy">Deployment</a>
+        <h4 data-i18n="sidebar.support">Support</h4>
+        <a href="/docs/faq/" data-i18n="sidebar.faq">FAQ</a>
+      </aside>
+
+      <main class="content">
+        <span class="badge" data-i18n="quick.badge">Quickstart</span>
+        <h1 data-i18n="quick.title">Run TrustPin locally</h1>
+        <p data-i18n="quick.p1">Use Docker Compose to start the API, PostgreSQL, and Redis locally.</p>
+
+        <h2 data-i18n="quick.step1">1. Start the stack</h2>
+        <div class="code">docker compose up --build</div>
+
+        <h2 data-i18n="quick.step2">2. Verify the API is live</h2>
+        <p data-i18n="quick.step2Body">The API listens on <code>http://localhost:8081</code> by default.</p>
+        <div class="code">curl -s http://localhost:8081/v1/audit/events -H "X-Tenant-ID: t1"</div>
+
+        <h2 data-i18n="quick.step3">3. Open the docs</h2>
+        <ul>
+          <li><span data-i18n="quick.docs1">Geliştirici dokümanları:</span> <code>http://localhost:8081/docs/</code></li>
+          <li><span data-i18n="quick.docs2">Swagger/OpenAPI:</span> <code>http://localhost:8081/swagger/</code></li>
+        </ul>
+
+        <h2 data-i18n="quick.nextTitle">Next steps</h2>
+        <p data-i18n="quick.nextBody">Start with enrollment, activate a device, then create a challenge to see approvals end‑to‑end.</p>
+      </main>
+
+      <aside class="toc">
+        <h4 data-i18n="toc.title">On this page</h4>
+      </aside>
+    </div>
+
+    <div class="footer">© 2026 TrustPin. Ready in minutes.</div>
+    <script src="/docs/assets/docs.js"></script>
+  </body>
+</html>
