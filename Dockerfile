@@ -13,6 +13,7 @@ WORKDIR /app
 COPY --from=build /out/trustpin-api /app/trustpin-api
 COPY --from=build /out/trustpin-cli /app/trustpin-cli
 COPY --from=build /src/docs /app/docs
+COPY --from=build /src/web /app/web
 EXPOSE 8080
 USER trustpin
 ENTRYPOINT ["/app/trustpin-api"]

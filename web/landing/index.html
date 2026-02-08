@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRUSTPIN — On‑prem MFA backend for high‑trust flows</title>
+    <meta name="description" content="TRUSTPIN is a production‑grade, on‑prem MFA backend with asymmetric cryptography, audit trails, and strict state machines." />
+    <meta property="og:title" content="TRUSTPIN" />
+    <meta property="og:description" content="On‑prem MFA backend for high‑trust flows." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand" aria-label="Trustpin">
+          <span class="brand-mark" aria-hidden="true"></span>
+          TRUSTPIN
+        </div>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#how" data-i18n="nav.how">How it works</a>
+          <a href="#security" data-i18n="nav.security">Security</a>
+          <a href="#docs" data-i18n="nav.docs">API Docs</a>
+          <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+        </nav>
+        <div class="nav-cta">
+          <button class="btn btn-ghost" id="lang-toggle" type="button" aria-label="Switch language">TR</button>
+          <a class="btn btn-ghost" href="/swagger/" data-i18n="cta.readDocs">Read Docs</a>
+          <a class="btn btn-primary" href="/swagger/" data-i18n="cta.getStarted">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <div>
+          <div class="ribbon" data-i18n="hero.ribbon">Production‑grade MFA, self‑hosted</div>
+          <h1 data-i18n="hero.title">TRUSTPIN secures approvals with asymmetric cryptography and zero‑trust controls.</h1>
+          <p data-i18n="hero.subtitle">Purpose‑built for teams that need on‑prem, auditable MFA flows for admin actions, high‑risk transactions, and internal tools — without compromising UX.</p>
+          <div class="nav-cta" style="margin-top: 18px;">
+            <a class="btn btn-primary" href="/swagger/" data-i18n="cta.getStarted">Get Started</a>
+            <a class="btn btn-ghost" href="#docs" data-i18n="cta.readDocs">Read Docs</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="How it works quick steps">
+          <h3 data-i18n="hero.stepsTitle">How it works</h3>
+          <p data-i18n="hero.stepsSubtitle">Spin up in minutes and verify every approval with signed payloads.</p>
+          <div class="hero-steps">
+            <div class="step" data-i18n="hero.step1">1. Enroll device & generate keys</div>
+            <div class="step" data-i18n="hero.step2">2. Create & send challenge</div>
+            <div class="step" data-i18n="hero.step3">3. Approve with signature + policy</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="problem">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="problem.title">Modern MFA without the cloud trade‑offs</h2>
+            <p data-i18n="problem.subtitle">Security teams need proof, product teams need speed. TRUSTPIN keeps sensitive approvals on‑prem, while preserving a smooth user experience.</p>
+          </div>
+          <span class="ribbon" data-i18n="problem.ribbon">On‑prem by design</span>
+        </div>
+        <div class="container grid grid-3">
+          <div class="card">
+            <img src="/assets/lock.svg" alt="Lock icon" width="36" height="36" />
+            <h3 data-i18n="problem.card1Title">Problem: MFA that breaks workflows</h3>
+            <p data-i18n="problem.card1Body">Generic MFA flows are slow, opaque, and hard to audit — especially for privileged actions.</p>
+          </div>
+          <div class="card">
+            <img src="/assets/shield.svg" alt="Shield icon" width="36" height="36" />
+            <h3 data-i18n="problem.card2Title">Solution: Signed approvals</h3>
+            <p data-i18n="problem.card2Body">Each approval is signed, validated, and stored with an append‑only audit trail.</p>
+          </div>
+          <div class="card">
+            <img src="/assets/bolt.svg" alt="Bolt icon" width="36" height="36" />
+            <h3 data-i18n="problem.card3Title">Outcome: Faster high‑trust flows</h3>
+            <p data-i18n="problem.card3Body">Reduce friction while guaranteeing every step is verifiable and reversible.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="features.title">Everything a high‑trust SaaS needs</h2>
+            <p data-i18n="features.subtitle">Core building blocks to ship enterprise‑grade MFA as fast as you ship features.</p>
+          </div>
+        </div>
+        <div class="container grid grid-3">
+          <div class="card">
+            <h3 data-i18n="features.f1Title">Asymmetric crypto</h3>
+            <p data-i18n="features.f1Body">Device‑generated keys keep private material off the server at all times.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f2Title">Append‑only audit</h3>
+            <p data-i18n="features.f2Body">Immutable event logging enables forensic timelines and compliance proofs.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f3Title">Strict state machines</h3>
+            <p data-i18n="features.f3Body">Deterministic lifecycle transitions prevent invalid or unsafe flows.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f4Title">Redis + nonce uniqueness</h3>
+            <p data-i18n="features.f4Body">High‑speed caches with replay prevention built into the approval flow.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f5Title">Policy & TOTP options</h3>
+            <p data-i18n="features.f5Body">Toggle mandatory TOTP per tenant and enforce adaptive security layers.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f6Title">On‑prem & self‑hosted</h3>
+            <p data-i18n="features.f6Body">Keep sensitive approvals in your own infrastructure with zero vendor lock‑in.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f7Title">Fast onboarding</h3>
+            <p data-i18n="features.f7Body">Simple enrollment flows that feel instant for end users.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="features.f8Title">Rate limiting</h3>
+            <p data-i18n="features.f8Body">Tenant‑aware guardrails stop abuse without slowing legitimate traffic.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="how.title">How TRUSTPIN works end‑to‑end</h2>
+            <p data-i18n="how.subtitle">Every step is signed, verifiable, and tied to an audit record.</p>
+          </div>
+        </div>
+        <div class="container grid grid-3">
+          <div class="flow">
+            <div class="flow-steps">
+              <div class="flow-step"><span class="badge">1</span> <span data-i18n="how.step1">Enrollment & device activation</span></div>
+              <div class="flow-step"><span class="badge">2</span> <span data-i18n="how.step2">Challenge initiation</span></div>
+              <div class="flow-step"><span class="badge">3</span> <span data-i18n="how.step3">Approve / Reject</span></div>
+              <div class="flow-step"><span class="badge">4</span> <span data-i18n="how.step4">Audit event stored</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3 data-i18n="how.useTitle">Use cases</h3>
+            <p data-i18n="how.useBody">Admin access, high‑risk transfers, internal tooling, production deploy approvals, and security operations.</p>
+            <ul class="list">
+              <li data-i18n="how.useItem1">Privileged access approvals</li>
+              <li data-i18n="how.useItem2">Payment or payout confirmations</li>
+              <li data-i18n="how.useItem3">Critical config changes</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 data-i18n="how.teamTitle">Designed for product teams</h3>
+            <p data-i18n="how.teamBody">Minimal endpoints with clear state transitions make integration predictable.</p>
+            <ul class="list">
+              <li data-i18n="how.teamItem1">Canonical payloads</li>
+              <li data-i18n="how.teamItem2">Deterministic JSON ordering</li>
+              <li data-i18n="how.teamItem3">Strict TTL enforcement</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="security">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="security.title">Security & compliance by default</h2>
+            <p data-i18n="security.subtitle">Built for zero‑trust environments with cryptographic accountability.</p>
+          </div>
+        </div>
+        <div class="container grid grid-3">
+          <div class="card">
+            <h3 data-i18n="security.s1Title">Zero‑trust posture</h3>
+            <p data-i18n="security.s1Body">Every approval is verified — no implicit trust between services.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="security.s2Title">Public‑key only storage</h3>
+            <p data-i18n="security.s2Body">Private keys never leave devices, reducing breach impact.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="security.s3Title">Signature verification</h3>
+            <p data-i18n="security.s3Body">Every action is authenticated with Ed25519 signatures.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="security.s4Title">Audit log integrity</h3>
+            <p data-i18n="security.s4Body">Append‑only log makes investigations and compliance reviews easy.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="security.s5Title">Replay prevention</h3>
+            <p data-i18n="security.s5Body">Nonces and TTLs stop reuse of approvals and payloads.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="security.s6Title">Policy controls</h3>
+            <p data-i18n="security.s6Body">Tenant‑level policy toggles and optional TOTP enforcement.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="docs">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="docs.title">API Documentation</h2>
+            <p data-i18n="docs.subtitle">Built for fast integration — clear endpoints and predictable responses.</p>
+          </div>
+          <a class="btn btn-primary" href="/swagger/" data-i18n="docs.open">Open API Docs</a>
+        </div>
+        <div class="container grid grid-3">
+          <div class="docs-box">
+            <strong data-i18n="docs.keyTitle">Key endpoints</strong>
+            <div>/v1/enrollments/init</div>
+            <div>/v1/devices/activate</div>
+            <div>/v1/auth/challenges/init</div>
+            <div>/v1/auth/challenges/{id}/approve</div>
+            <div>/v1/audit/events</div>
+          </div>
+          <div class="docs-box">
+            <strong data-i18n="docs.curlTitle">Example cURL</strong>
+            <code>curl -X POST http://localhost:8081/v1/enrollments/init</code>
+            <code>-H "Content-Type: application/json"</code>
+            <code>-d '{"tenant_id":"t1","user_id":"u1"}'</code>
+          </div>
+          <div class="docs-box">
+            <strong data-i18n="docs.linksTitle">Documentation links</strong>
+            <p data-i18n="docs.linksBody">Interactive OpenAPI docs for request/response schemas.</p>
+            <a class="btn btn-ghost" href="/swagger/" data-i18n="docs.linksCta">Read Swagger UI</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="pricing.title">Pricing that scales with your trust needs</h2>
+            <p data-i18n="pricing.subtitle">Transparent plans for teams of any size. Self‑hosted by default.</p>
+          </div>
+        </div>
+        <div class="container pricing">
+          <div class="price-card">
+            <h3 data-i18n="pricing.starterTitle">Starter</h3>
+            <p class="price" data-i18n="pricing.starterPrice">Free</p>
+            <ul class="list">
+              <li data-i18n="pricing.starterItem1">Up to 5 tenants</li>
+              <li data-i18n="pricing.starterItem2">Community support</li>
+              <li data-i18n="pricing.starterItem3">Standard audit retention</li>
+            </ul>
+            <a class="btn btn-ghost" href="/swagger/" data-i18n="pricing.starterCta">Start now</a>
+          </div>
+          <div class="price-card highlight">
+            <h3 data-i18n="pricing.proTitle">Pro</h3>
+            <p class="price" data-i18n="pricing.proPrice">$399 / mo</p>
+            <ul class="list">
+              <li data-i18n="pricing.proItem1">Unlimited tenants</li>
+              <li data-i18n="pricing.proItem2">SLA support</li>
+              <li data-i18n="pricing.proItem3">Extended audit exports</li>
+            </ul>
+            <a class="btn btn-primary" href="/swagger/" data-i18n="pricing.proCta">Get Started</a>
+          </div>
+          <div class="price-card">
+            <h3 data-i18n="pricing.entTitle">Enterprise</h3>
+            <p class="price" data-i18n="pricing.entPrice">Custom</p>
+            <ul class="list">
+              <li data-i18n="pricing.entItem1">Dedicated security reviews</li>
+              <li data-i18n="pricing.entItem2">On‑prem advisory</li>
+              <li data-i18n="pricing.entItem3">Custom policy workflows</li>
+            </ul>
+            <a class="btn btn-ghost" href="#" data-i18n="pricing.entCta">Contact Us</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="logos.title">Trusted by security‑forward teams</h2>
+            <p data-i18n="logos.subtitle">Logos are placeholders — replace with customer marks.</p>
+          </div>
+        </div>
+        <div class="container logo-row">
+          <div>ArcShield</div>
+          <div>BlueGate</div>
+          <div>VaultRay</div>
+          <div>Northwind</div>
+          <div>QuantumOps</div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container section-title">
+          <div>
+            <h2 data-i18n="faq.title">FAQ</h2>
+            <p data-i18n="faq.subtitle">Answers to the most common onboarding questions.</p>
+          </div>
+        </div>
+        <div class="container faq">
+          <div class="faq-item">
+            <strong data-i18n="faq.q1">Does TRUSTPIN require a mobile app?</strong>
+            <p data-i18n="faq.a1">No. It integrates with your existing device enrollment flow and can be embedded into your product.</p>
+          </div>
+          <div class="faq-item">
+            <strong data-i18n="faq.q2">Is this cloud‑hosted?</strong>
+            <p data-i18n="faq.a2">TRUSTPIN is on‑prem by design. Run it in your own infrastructure or private cloud.</p>
+          </div>
+          <div class="faq-item">
+            <strong data-i18n="faq.q3">How do I start?</strong>
+            <p data-i18n="faq.a3">Open the API docs, initialize enrollment, and follow the challenge lifecycle steps.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container cta">
+          <h2 data-i18n="ctaBlock.title">Start integrating in minutes</h2>
+          <p data-i18n="ctaBlock.subtitle">Ship secure approvals without slowing your team down.</p>
+          <div>
+            <a class="btn btn-primary" href="/swagger/" data-i18n="ctaBlock.cta">Open API Docs</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px;">
+        <div>
+          <strong>TRUSTPIN</strong>
+          <div data-i18n="footer.tagline">On‑prem MFA backend for high‑trust flows.</div>
+        </div>
+        <div class="footer-links">
+          <a href="/swagger/" data-i18n="footer.docs">Docs</a>
+          <a href="#" data-i18n="footer.github">GitHub</a>
+          <a href="#" data-i18n="footer.contact">Contact</a>
+          <a href="#" data-i18n="footer.legal">Legal</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const strings = {
+        tr: {
+          "nav.features": "Özellikler",
+          "nav.how": "Nasıl çalışır",
+          "nav.security": "Güvenlik",
+          "nav.docs": "API Dokümanı",
+          "nav.pricing": "Fiyatlama",
+          "cta.readDocs": "Dokümanlar",
+          "cta.getStarted": "Hemen Başla",
+          "hero.ribbon": "Üretim seviyesi MFA, kurum içi",
+          "hero.title": "TRUSTPIN onay akışlarını asimetrik kripto ve sıfır güven yaklaşımıyla güvenceye alır.",
+          "hero.subtitle": "Admin işlemleri, yüksek riskli transferler ve iç araçlar için kurum içi, denetlenebilir MFA akışları.",
+          "hero.stepsTitle": "Nasıl çalışır",
+          "hero.stepsSubtitle": "Dakikalar içinde kur, her onayı imzalı payload ile doğrula.",
+          "hero.step1": "1. Cihazı kaydet ve anahtar üret",
+          "hero.step2": "2. Challenge oluştur ve gönder",
+          "hero.step3": "3. İmza + politika ile onayla",
+          "problem.title": "Bulut maliyeti olmadan modern MFA",
+          "problem.subtitle": "Güvenlik ekipleri kanıt ister, ürün ekipleri hız. TRUSTPIN hassas onayları kurum içinde tutar.",
+          "problem.ribbon": "Kurum içi tasarım",
+          "problem.card1Title": "Problem: Akışı bozan MFA",
+          "problem.card1Body": "Genel MFA akışları yavaş, opak ve denetlenmesi zordur.",
+          "problem.card2Title": "Çözüm: İmzalı onaylar",
+          "problem.card2Body": "Her onay doğrulanır ve append‑only denetim günlüğüne yazılır.",
+          "problem.card3Title": "Sonuç: Daha hızlı yüksek‑güven akışları",
+          "problem.card3Body": "Sürtünmeyi azaltırken her adım doğrulanabilir olur.",
+          "features.title": "Yüksek güvenli SaaS için gereken her şey",
+          "features.subtitle": "Kurumsal MFA’yı hızlıca yayına almak için temel yapı taşları.",
+          "features.f1Title": "Asimetrik kripto",
+          "features.f1Body": "Özel anahtarlar cihazda kalır, sunucuya taşınmaz.",
+          "features.f2Title": "Append‑only audit",
+          "features.f2Body": "Değiştirilemez olay günlüğü ile kanıt üret.",
+          "features.f3Title": "Katı durum makineleri",
+          "features.f3Body": "Deterministik geçişler hatalı akışları engeller.",
+          "features.f4Title": "Redis + nonce tekilliği",
+          "features.f4Body": "Yüksek hızlı cache ve tekrar kullanım önleme.",
+          "features.f5Title": "Politika & TOTP seçenekleri",
+          "features.f5Body": "Tenant bazlı TOTP zorunluluğu ve katmanlı güvenlik.",
+          "features.f6Title": "Kurum içi & self‑hosted",
+          "features.f6Body": "Hassas onaylar kendi altyapında kalır.",
+          "features.f7Title": "Hızlı onboarding",
+          "features.f7Body": "Basit kayıt akışlarıyla anında kullanım.",
+          "features.f8Title": "Rate limiting",
+          "features.f8Body": "Tenant bazlı koruma ile suistimale karşı önlem.",
+          "how.title": "Uçtan uca TRUSTPIN akışı",
+          "how.subtitle": "Her adım imzalı, doğrulanabilir ve denetlenebilir.",
+          "how.step1": "Kayıt ve cihaz aktivasyonu",
+          "how.step2": "Challenge başlatma",
+          "how.step3": "Onay / Red",
+          "how.step4": "Denetim kaydı",
+          "how.useTitle": "Kullanım senaryoları",
+          "how.useBody": "Admin erişimi, yüksek riskli transferler, iç araçlar, prod deploy onayları.",
+          "how.useItem1": "Ayrıcalıklı erişim onayları",
+          "how.useItem2": "Ödeme/payout onayları",
+          "how.useItem3": "Kritik konfigürasyon değişiklikleri",
+          "how.teamTitle": "Ürün ekipleri için tasarlandı",
+          "how.teamBody": "Net durum geçişleriyle öngörülebilir entegrasyon.",
+          "how.teamItem1": "Canonical payload’lar",
+          "how.teamItem2": "Deterministik JSON sıralaması",
+          "how.teamItem3": "Katı TTL kuralları",
+          "security.title": "Varsayılan güvenlik ve uyumluluk",
+          "security.subtitle": "Sıfır güven için kriptografik hesap verebilirlik.",
+          "security.s1Title": "Sıfır güven duruşu",
+          "security.s1Body": "Her onay doğrulanır; örtük güven yoktur.",
+          "security.s2Title": "Sadece public key saklama",
+          "security.s2Body": "Özel anahtarlar cihazdan çıkmaz.",
+          "security.s3Title": "İmza doğrulama",
+          "security.s3Body": "Her işlem Ed25519 ile doğrulanır.",
+          "security.s4Title": "Denetim logu bütünlüğü",
+          "security.s4Body": "Append‑only log ile inceleme kolaylaşır.",
+          "security.s5Title": "Replay önleme",
+          "security.s5Body": "Nonce ve TTL’ler tekrar kullanımını engeller.",
+          "security.s6Title": "Politika kontrolleri",
+          "security.s6Body": "Tenant bazlı politika ve opsiyonel TOTP.",
+          "docs.title": "API Dokümantasyonu",
+          "docs.subtitle": "Hızlı entegrasyon için net endpoint’ler.",
+          "docs.open": "API Dokümanını Aç",
+          "docs.keyTitle": "Öne çıkan endpoint’ler",
+          "docs.curlTitle": "Örnek cURL",
+          "docs.linksTitle": "Dokümantasyon linkleri",
+          "docs.linksBody": "İstek/yanıt şemaları için etkileşimli OpenAPI.",
+          "docs.linksCta": "Swagger UI’yi Aç",
+          "pricing.title": "Güven ihtiyaçlarınla ölçeklenen fiyatlama",
+          "pricing.subtitle": "Her ölçekten ekip için şeffaf planlar.",
+          "pricing.starterTitle": "Starter",
+          "pricing.starterPrice": "Ücretsiz",
+          "pricing.starterItem1": "5 tenant’a kadar",
+          "pricing.starterItem2": "Topluluk desteği",
+          "pricing.starterItem3": "Standart denetim saklama",
+          "pricing.starterCta": "Şimdi başla",
+          "pricing.proTitle": "Pro",
+          "pricing.proPrice": "$399 / ay",
+          "pricing.proItem1": "Sınırsız tenant",
+          "pricing.proItem2": "SLA destek",
+          "pricing.proItem3": "Genişletilmiş audit export",
+          "pricing.proCta": "Hemen Başla",
+          "pricing.entTitle": "Enterprise",
+          "pricing.entPrice": "Özel",
+          "pricing.entItem1": "Özel güvenlik incelemesi",
+          "pricing.entItem2": "Kurum içi danışmanlık",
+          "pricing.entItem3": "Özel politika akışları",
+          "pricing.entCta": "İletişime geç",
+          "logos.title": "Güvenlik odaklı ekipler tercih ediyor",
+          "logos.subtitle": "Logolar placeholder — müşteri logolarıyla değiştirin.",
+          "faq.title": "SSS",
+          "faq.subtitle": "En sık sorulan soruların cevapları.",
+          "faq.q1": "TRUSTPIN mobil uygulama gerektirir mi?",
+          "faq.a1": "Hayır. Mevcut cihaz kayıt akışınıza entegre olur.",
+          "faq.q2": "Bulut üzerinde mi çalışıyor?",
+          "faq.a2": "TRUSTPIN kurum içi tasarlanmıştır; kendi altyapınızda çalıştırın.",
+          "faq.q3": "Nasıl başlarım?",
+          "faq.a3": "API dokümanını açın, enrollment başlatın ve challenge akışını izleyin.",
+          "ctaBlock.title": "Dakikalar içinde entegre et",
+          "ctaBlock.subtitle": "Ekibinizi yavaşlatmadan güvenli onaylar sunun.",
+          "ctaBlock.cta": "API Dokümanını Aç",
+          "footer.tagline": "Yüksek güvenli akışlar için on‑prem MFA backend.",
+          "footer.docs": "Dokümanlar",
+          "footer.github": "GitHub",
+          "footer.contact": "İletişim",
+          "footer.legal": "Yasal"
+        },
+        en: {
+          "nav.features": "Features",
+          "nav.how": "How it works",
+          "nav.security": "Security",
+          "nav.docs": "API Docs",
+          "nav.pricing": "Pricing",
+          "cta.readDocs": "Read Docs",
+          "cta.getStarted": "Get Started",
+          "hero.ribbon": "Production‑grade MFA, self‑hosted",
+          "hero.title": "TRUSTPIN secures approvals with asymmetric cryptography and zero‑trust controls.",
+          "hero.subtitle": "Purpose‑built for teams that need on‑prem, auditable MFA flows for admin actions, high‑risk transactions, and internal tools — without compromising UX.",
+          "hero.stepsTitle": "How it works",
+          "hero.stepsSubtitle": "Spin up in minutes and verify every approval with signed payloads.",
+          "hero.step1": "1. Enroll device & generate keys",
+          "hero.step2": "2. Create & send challenge",
+          "hero.step3": "3. Approve with signature + policy",
+          "problem.title": "Modern MFA without the cloud trade‑offs",
+          "problem.subtitle": "Security teams need proof, product teams need speed. TRUSTPIN keeps sensitive approvals on‑prem, while preserving a smooth user experience.",
+          "problem.ribbon": "On‑prem by design",
+          "problem.card1Title": "Problem: MFA that breaks workflows",
+          "problem.card1Body": "Generic MFA flows are slow, opaque, and hard to audit — especially for privileged actions.",
+          "problem.card2Title": "Solution: Signed approvals",
+          "problem.card2Body": "Each approval is signed, validated, and stored with an append‑only audit trail.",
+          "problem.card3Title": "Outcome: Faster high‑trust flows",
+          "problem.card3Body": "Reduce friction while guaranteeing every step is verifiable and reversible.",
+          "features.title": "Everything a high‑trust SaaS needs",
+          "features.subtitle": "Core building blocks to ship enterprise‑grade MFA as fast as you ship features.",
+          "features.f1Title": "Asymmetric crypto",
+          "features.f1Body": "Device‑generated keys keep private material off the server at all times.",
+          "features.f2Title": "Append‑only audit",
+          "features.f2Body": "Immutable event logging enables forensic timelines and compliance proofs.",
+          "features.f3Title": "Strict state machines",
+          "features.f3Body": "Deterministic lifecycle transitions prevent invalid or unsafe flows.",
+          "features.f4Title": "Redis + nonce uniqueness",
+          "features.f4Body": "High‑speed caches with replay prevention built into the approval flow.",
+          "features.f5Title": "Policy & TOTP options",
+          "features.f5Body": "Toggle mandatory TOTP per tenant and enforce adaptive security layers.",
+          "features.f6Title": "On‑prem & self‑hosted",
+          "features.f6Body": "Keep sensitive approvals in your own infrastructure with zero vendor lock‑in.",
+          "features.f7Title": "Fast onboarding",
+          "features.f7Body": "Simple enrollment flows that feel instant for end users.",
+          "features.f8Title": "Rate limiting",
+          "features.f8Body": "Tenant‑aware guardrails stop abuse without slowing legitimate traffic.",
+          "how.title": "How TRUSTPIN works end‑to‑end",
+          "how.subtitle": "Every step is signed, verifiable, and tied to an audit record.",
+          "how.step1": "Enrollment & device activation",
+          "how.step2": "Challenge initiation",
+          "how.step3": "Approve / Reject",
+          "how.step4": "Audit event stored",
+          "how.useTitle": "Use cases",
+          "how.useBody": "Admin access, high‑risk transfers, internal tooling, production deploy approvals, and security operations.",
+          "how.useItem1": "Privileged access approvals",
+          "how.useItem2": "Payment or payout confirmations",
+          "how.useItem3": "Critical config changes",
+          "how.teamTitle": "Designed for product teams",
+          "how.teamBody": "Minimal endpoints with clear state transitions make integration predictable.",
+          "how.teamItem1": "Canonical payloads",
+          "how.teamItem2": "Deterministic JSON ordering",
+          "how.teamItem3": "Strict TTL enforcement",
+          "security.title": "Security & compliance by default",
+          "security.subtitle": "Built for zero‑trust environments with cryptographic accountability.",
+          "security.s1Title": "Zero‑trust posture",
+          "security.s1Body": "Every approval is verified — no implicit trust between services.",
+          "security.s2Title": "Public‑key only storage",
+          "security.s2Body": "Private keys never leave devices, reducing breach impact.",
+          "security.s3Title": "Signature verification",
+          "security.s3Body": "Every action is authenticated with Ed25519 signatures.",
+          "security.s4Title": "Audit log integrity",
+          "security.s4Body": "Append‑only log makes investigations and compliance reviews easy.",
+          "security.s5Title": "Replay prevention",
+          "security.s5Body": "Nonces and TTLs stop reuse of approvals and payloads.",
+          "security.s6Title": "Policy controls",
+          "security.s6Body": "Tenant‑level policy toggles and optional TOTP enforcement.",
+          "docs.title": "API Documentation",
+          "docs.subtitle": "Built for fast integration — clear endpoints and predictable responses.",
+          "docs.open": "Open API Docs",
+          "docs.keyTitle": "Key endpoints",
+          "docs.curlTitle": "Example cURL",
+          "docs.linksTitle": "Documentation links",
+          "docs.linksBody": "Interactive OpenAPI docs for request/response schemas.",
+          "docs.linksCta": "Read Swagger UI",
+          "pricing.title": "Pricing that scales with your trust needs",
+          "pricing.subtitle": "Transparent plans for teams of any size. Self‑hosted by default.",
+          "pricing.starterTitle": "Starter",
+          "pricing.starterPrice": "Free",
+          "pricing.starterItem1": "Up to 5 tenants",
+          "pricing.starterItem2": "Community support",
+          "pricing.starterItem3": "Standard audit retention",
+          "pricing.starterCta": "Start now",
+          "pricing.proTitle": "Pro",
+          "pricing.proPrice": "$399 / mo",
+          "pricing.proItem1": "Unlimited tenants",
+          "pricing.proItem2": "SLA support",
+          "pricing.proItem3": "Extended audit exports",
+          "pricing.proCta": "Get Started",
+          "pricing.entTitle": "Enterprise",
+          "pricing.entPrice": "Custom",
+          "pricing.entItem1": "Dedicated security reviews",
+          "pricing.entItem2": "On‑prem advisory",
+          "pricing.entItem3": "Custom policy workflows",
+          "pricing.entCta": "Contact Us",
+          "logos.title": "Trusted by security‑forward teams",
+          "logos.subtitle": "Logos are placeholders — replace with customer marks.",
+          "faq.title": "FAQ",
+          "faq.subtitle": "Answers to the most common onboarding questions.",
+          "faq.q1": "Does TRUSTPIN require a mobile app?",
+          "faq.a1": "No. It integrates with your existing device enrollment flow and can be embedded into your product.",
+          "faq.q2": "Is this cloud‑hosted?",
+          "faq.a2": "TRUSTPIN is on‑prem by design. Run it in your own infrastructure or private cloud.",
+          "faq.q3": "How do I start?",
+          "faq.a3": "Open the API docs, initialize enrollment, and follow the challenge lifecycle steps.",
+          "ctaBlock.title": "Start integrating in minutes",
+          "ctaBlock.subtitle": "Ship secure approvals without slowing your team down.",
+          "ctaBlock.cta": "Open API Docs",
+          "footer.tagline": "On‑prem MFA backend for high‑trust flows.",
+          "footer.docs": "Docs",
+          "footer.github": "GitHub",
+          "footer.contact": "Contact",
+          "footer.legal": "Legal"
+        }
+      };
+
+      const applyLanguage = (lang) => {
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (strings[lang] && strings[lang][key]) {
+            el.textContent = strings[lang][key];
+          }
+        });
+        const btn = document.getElementById("lang-toggle");
+        if (btn) {
+          btn.textContent = lang === "tr" ? "EN" : "TR";
+          btn.setAttribute("aria-label", lang === "tr" ? "Switch to English" : "Türkçeye geç");
+        }
+        localStorage.setItem("trustpin_lang", lang);
+      };
+
+      const year = new Date().getFullYear();
+      const footer = document.querySelector("footer .container");
+      if (footer) {
+        const span = document.createElement("span");
+        span.style.marginLeft = "auto";
+        span.textContent = `© ${year} TRUSTPIN`;
+        footer.appendChild(span);
+      }
+
+      const saved = localStorage.getItem("trustpin_lang") || "tr";
+      applyLanguage(saved);
+      const toggle = document.getElementById("lang-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          const next = document.documentElement.lang === "tr" ? "en" : "tr";
+          applyLanguage(next);
+        });
+      }
+    </script>
+  </body>
+</html>
