@@ -1,0 +1,248 @@
+openapi: 3.0.3
+info:
+  title: TRUSTPIN API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /v1/enrollments/init:
+    post:
+      summary: Initiate enrollment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnrollmentInitRequest"
+      responses:
+        "201":
+          description: Enrollment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnrollmentInitResponse"
+        "400": {description: Bad request}
+        "429": {description: Rate limited}
+  /v1/devices/activate:
+    post:
+      summary: Activate device
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeviceActivateRequest"
+      responses:
+        "201":
+          description: Device activated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceActivateResponse"
+        "404": {description: Enrollment not found}
+        "409": {description: Invalid state}
+        "410": {description: Pairing expired}
+  /v1/devices/{id}/revoke:
+    post:
+      summary: Revoke device
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      responses:
+        "200": {description: Device revoked}
+        "404": {description: Not found}
+        "409": {description: Invalid state}
+  /v1/devices/{id}/suspend:
+    post:
+      summary: Suspend device
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      responses:
+        "200": {description: Device suspended}
+        "404": {description: Not found}
+        "409": {description: Invalid state}
+  /v1/devices/{id}/resume:
+    post:
+      summary: Resume device
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      responses:
+        "200": {description: Device resumed}
+        "404": {description: Not found}
+        "409": {description: Invalid state}
+  /v1/auth/challenges/init:
+    post:
+      summary: Initiate challenge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChallengeInitRequest"
+      responses:
+        "201":
+          description: Challenge created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChallengeInitResponse"
+        "409": {description: Invalid state}
+        "503": {description: Push failed}
+  /v1/auth/challenges/{id}:
+    get:
+      summary: Fetch challenge payload
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      responses:
+        "200":
+          description: Challenge payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChallengeGetResponse"
+        "404": {description: Not found}
+        "409": {description: Invalid state}
+        "410": {description: Expired}
+  /v1/auth/challenges/{id}/approve:
+    post:
+      summary: Approve challenge
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChallengeDecisionRequest"
+      responses:
+        "200": {description: Approved}
+        "404": {description: Not found}
+        "409": {description: Invalid state}
+        "410": {description: Expired}
+        "412": {description: Precondition failed}
+  /v1/auth/challenges/{id}/reject:
+    post:
+      summary: Reject challenge
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChallengeDecisionRequest"
+      responses:
+        "200": {description: Rejected}
+        "404": {description: Not found}
+        "409": {description: Invalid state}
+        "410": {description: Expired}
+        "412": {description: Precondition failed}
+  /v1/auth/challenges/{id}/status:
+    get:
+      summary: Get challenge status
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string}
+      responses:
+        "200": {description: Status}
+        "404": {description: Not found}
+  /v1/audit/events:
+    get:
+      summary: List audit events
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer}
+      responses:
+        "200": {description: Audit events}
+components:
+  schemas:
+    EnrollmentInitRequest:
+      type: object
+      required: [tenant_id, user_id]
+      properties:
+        tenant_id: {type: string}
+        user_id: {type: string}
+    EnrollmentInitResponse:
+      type: object
+      properties:
+        enrollment_id: {type: string}
+        pairing_code: {type: string}
+        expires_at: {type: string}
+    DeviceActivateRequest:
+      type: object
+      required: [pairing_code, public_key]
+      properties:
+        pairing_code: {type: string}
+        public_key: {type: string}
+        label: {type: string}
+    DeviceActivateResponse:
+      type: object
+      properties:
+        device_id: {type: string}
+        state: {type: string}
+    ChallengeInitRequest:
+      type: object
+      required: [tenant_id, user_id, device_id, action]
+      properties:
+        tenant_id: {type: string}
+        user_id: {type: string}
+        device_id: {type: string}
+        action: {type: string}
+        context: {type: object, additionalProperties: true}
+    ChallengeInitResponse:
+      type: object
+      properties:
+        challenge_id: {type: string}
+        state: {type: string}
+        issued_at: {type: string}
+        expires_at: {type: string}
+    CanonicalPayload:
+      type: object
+      properties:
+        tenant_id: {type: string}
+        user_id: {type: string}
+        device_id: {type: string}
+        challenge_id: {type: string}
+        nonce: {type: string}
+        action: {type: string}
+        issued_at: {type: string}
+        expires_at: {type: string}
+        context_hash: {type: string}
+    ChallengeGetResponse:
+      type: object
+      properties:
+        challenge_id: {type: string}
+        action: {type: string}
+        context: {type: object, additionalProperties: true}
+        payload:
+          $ref: "#/components/schemas/CanonicalPayload"
+        canonical_payload: {type: string}
+    ChallengeDecisionRequest:
+      type: object
+      required: [device_id, signature, payload]
+      properties:
+        device_id: {type: string}
+        signature: {type: string}
+        payload:
+          $ref: "#/components/schemas/CanonicalPayload"
+        totp_code: {type: string}
