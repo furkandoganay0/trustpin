@@ -25,7 +25,7 @@ func Load() Config {
 	return Config{
 		Env:                 getenv("TRUSTPIN_ENV", "dev"),
 		HTTPAddr:            getenv("TRUSTPIN_HTTP_ADDR", ":8080"),
-		DBURL:               getenv("TRUSTPIN_DB_URL", "postgres://trustpin:trustpin@postgres:5432/trustpin?sslmode=disable"),
+		DBURL:               getenv("TRUSTPIN_DB_URL", "postgres://trustpin:trustpin@postgres:5433/trustpin?sslmode=disable"),
 		RedisAddr:           getenv("TRUSTPIN_REDIS_ADDR", "redis:6379"),
 		RedisPassword:       getenv("TRUSTPIN_REDIS_PASSWORD", ""),
 		RedisDB:             getenvInt("TRUSTPIN_REDIS_DB", 0),
