@@ -2,10 +2,10 @@ services:
   api:
     build: .
     ports:
-      - "8081:8080"
+      - "8082:8082"
     restart: unless-stopped
     environment:
-      TRUSTPIN_HTTP_ADDR: ":8080"
+      TRUSTPIN_HTTP_ADDR: ":8082"
       TRUSTPIN_DB_URL: "postgres://trustpin:trustpin@postgres:5432/trustpin?sslmode=disable"
       TRUSTPIN_REDIS_ADDR: "redis:6379"
       TRUSTPIN_CHALLENGE_TTL: "2m"
